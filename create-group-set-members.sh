@@ -56,7 +56,7 @@ case "$typ" in
             whocanviewmembership all_managers_can_view
             allowexternalmembers true
         )
-        extrahint="* Standardfooter aktivieren"
+        extrahint=""
         ;;
     (*)
         echo "Typ must be student or parent"
