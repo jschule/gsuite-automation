@@ -38,8 +38,9 @@ case "$typ" in
             whocanviewgroup all_members_can_view
             whocanviewmembership all_in_domain_can_view
         )
+        extrahint=""
         ;;
-    (parents)
+    (parent)
         group="eltern-$class"
         name="Eltern-Klasse-$class JTS"
         managers="bettina.wolf"
@@ -55,6 +56,7 @@ case "$typ" in
             whocanviewmembership all_managers_can_view
             allowexternalmembers true
         )
+        extrahint="* Standardfooter aktivieren"
         ;;
     (*)
         echo "Typ must be student or parent"
@@ -119,4 +121,5 @@ if test "$need_manual_setup" ; then
     echo "Bitte in der Weboberfläche https://groups.google.com/a/jschule.de/g/$group/settings noch einstellen:"
     echo "* das Emailprefix auf '$subjectprefix' setzen"
     echo "* Conversation history einschalten"
+    echo "$extrahint"
 fi
