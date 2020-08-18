@@ -20,6 +20,13 @@ $gam update group allelehrer sync usersonly notsuspended ou /Mitarbeiter/Lehrer
 $gam update group mitarbeiter sync usersonly notsuspended ou /Mitarbeiter
 
 # Sync all student groups from master sheet data
-$gam csv gsheet "$MASTERUSER" "$MASTERSHEET" "gam Schülerverteiler" \
+$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Schülerverteiler" \
 	gam update group "~Gruppe" \
 	sync member usersonly users "~Mitglieder"
+
+# Sync all parent groups from master sheet data
+$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Elternverteiler" \
+	gam update group "~Gruppe" \
+	sync member usersonly users "~Mitglieder"
+
+
