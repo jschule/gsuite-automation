@@ -14,10 +14,7 @@ test "$MASTERSHEET"
 test "$MASTERUSER"
 test "$STARTPASSWORD"
 
-function info {
-    # print info headergit 
-    echo -e "*\n*\n*\n***  $*  ***\n*"
-}
+source _functions.sh
 
 info Create employee accounts
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Users#create-a-user

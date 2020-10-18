@@ -8,6 +8,12 @@ if [ ! -x "$gam" ] ; then
     exit 98
 fi
 
+if [ ! "$1" ] ; then
+    echo "Usage: $0 <class>"
+    echo "Example: $0 3"
+    exit 99
+fi
+
 source config.sh
 
 test "$MASTERSHEET"
@@ -15,7 +21,9 @@ test "$MASTERUSER"
 
 source _functions.sh
 
-info Move all students to their OU
-$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Schüler" \
+class="$1" ; shift
+
+info Reset password for all students in class "$class"
+$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Schüler" matchfield Klasse "^$class$" \
 	gam update user "~Email" \
-	ou "~OU"
+	password "~Passwort"
