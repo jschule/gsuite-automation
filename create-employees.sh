@@ -30,4 +30,12 @@ $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Mitarbeiter neu" \
         subject "Neues JTS Konto #givenname# #familyname#" \
         file new-employee-notification.txt
 
-exec ./maintenance.sh
+./maintenace.sh
+
+cat <<EOF
+*** Done
+
+Please update groups and make sure to run ./maintenance.sh at the end
+
+You can now remove the "Neu" tag from these new users.
+EOF
