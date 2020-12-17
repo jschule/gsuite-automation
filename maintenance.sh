@@ -15,6 +15,17 @@ test "$MASTERUSER"
 
 source _functions.sh
 
+info Update Mitarbeiter and Schüler in Master Data
+$gam user $MASTERUSER clear sheetranges "$MASTERSHEET" range Schüler range Mitarbeiter
+
+$gam ou_and_children Mitarbeiter print user | $gam user "$MASTERUSER" \
+    update sheetrange "$MASTERSHEET" \
+    json file <(make_gam_sheet_update_json Mitarbeiter)
+
+$gam ou_and_children Schüler print user | $gam user "$MASTERUSER" \
+    update sheetrange "$MASTERSHEET" \
+    json file <(make_gam_sheet_update_json Schüler)
+
 info Sync Mitarbeiter / Lehrer group with OU
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Collections-of-Users#users-directly-in-the-organization-unit-orgunititem
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Groups-Membership#synchronize-members-in-a-group
@@ -30,15 +41,3 @@ info Sync all parent groups from master sheet data
 $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Elternverteiler" \
 	gam update group "~Gruppe" \
 	sync member usersonly users "~Mitglieder"
-
-
-info Update Mitarbeiter and Schüler in Master Data
-$gam user $MASTERUSER clear sheetranges "$MASTERSHEET" range Schüler range Mitarbeiter
-
-$gam ou_and_children Mitarbeiter print user | $gam user "$MASTERUSER" \
-    update sheetrange "$MASTERSHEET" \
-    json file <(make_gam_sheet_update_json Mitarbeiter)
-
-$gam ou_and_children Schüler print user | $gam user "$MASTERUSER" \
-    update sheetrange "$MASTERSHEET" \
-    json file <(make_gam_sheet_update_json Schüler)
