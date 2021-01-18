@@ -1,19 +1,12 @@
 #!/bin/bash
-set -o pipefail -o errexit -o nounset
 
-gam="$HOME/bin/gamadv-xtd3/gam"
-
-if [ ! -x "$gam" ] ; then
-    echo "Need https://github.com/taers232c/GAMADV-XTD3 in $gam, please install"
-    exit 98
-fi
+source _functions.sh
 
 source config.sh
 
 test "$MASTERSHEET"
 test "$MASTERUSER"
 
-source _functions.sh
 
 info Update Mitarbeiter and Schüler in Master Data
 $gam user $MASTERUSER clear sheetranges "$MASTERSHEET" range Schüler range Mitarbeiter
