@@ -30,7 +30,7 @@ $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Mitarbeiter neu" \
         subject "Neues JTS Konto #givenname# #familyname#" \
         file new-employee-notification.txt
 
-./maintenace.sh
+./maintenance.sh
 
 cat <<EOF
 *** Done
