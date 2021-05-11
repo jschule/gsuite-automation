@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source _functions.sh
-source config.sh
+# not needed source config.sh
 
 
 info Find courses without owner
