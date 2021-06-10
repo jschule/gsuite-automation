@@ -15,12 +15,14 @@ test "$MASTERUSER"
 
 source _functions.sh
 
-info Rename students
-$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Schüler Umbenennen" matchfield Alt "@" \
-	gam update user "~Alt" \
+info Modify user accounts
+$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Konten Ändern" matchfield OldEmail "@" \
+	gam update user "~OldEmail" \
     firstname "~First" \
     lastname "~Last" \
     username "~Username" \
-    email "~Email"
+    email "~Email" \
+    ou "~OU"
+    
 
 exec ./maintenance.sh
