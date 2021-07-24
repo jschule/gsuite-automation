@@ -21,7 +21,7 @@ test "$MASTERUSER"
 
 source _functions.sh
 
-class="$1" ; shift
+student="$1" ; shift
 
 info Reset password for all students in class "$class"
 $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Schüler" matchfield Klasse "^$class$" \
