@@ -17,4 +17,5 @@ if [ "$(wc -l <<<"$courses")" -gt 0 ] ; then
 
     echo -n "Courses: "
     echo "${course_ids[@]}" | tr " " ,
+    echo 'Use "gam delete courses id,id,id..." to delete courses'
 fi
