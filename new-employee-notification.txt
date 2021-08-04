@@ -2,7 +2,13 @@ Hallo #givenname# #familyname#,
 
 Du hast ein Google Konto bei der Jüdischen Traditionsschule erhalten.
 
-Für die erste Anmeldung gehe bitte auf https://www.google.com/accounts/AccountChooser?Email=#user#&continue=https://apps.google.com/user/hub
+Bitte folge dieser Anleitung Schritt für Schritt.
+
+1. Bitte den Chrome Browser verwenden, bei Bedarf von https://www.google.com/chrome/ herunterladen.
+
+2. Falls Ihr den Chrome Browser schon verwendet, dann bitte ein neues Profil für die Schule anlegen, https://www.youtube.com/watch?v=lq2Wy9gxuIE zeigt wie das geht.
+
+3. Für die erste Anmeldung gehe bitte auf https://www.google.com/accounts/AccountChooser?Email=#user#&continue=https://apps.google.com/user/hub
 
 und melde Dich mit folgenden Daten an:
 
@@ -13,7 +19,9 @@ Bei der ersten Anmeldung musst Du ein neues persönliches Passwort vergeben, bit
 
 Nach der Anmeldung bitten wir Dich auch die 2-Faktor-Anmeldung zu aktivieren: https://www.google.com/landing/2step/
 
-Bei Rückfragen kannst Du Dich an Bettina Wolf sowie Schlomo Schapiro wenden.
+4. Bitte jetzt das Chrome Profil synchronisieren, https://www.youtube.com/watch?v=li9o64t1-Uc zeigt wie das geht.
+
+Bei Rückfragen kannst Du Dich an Bettina Wolf sowie Schlomo Schapiro (0170 7537260) wenden.
 
 Wir wünschen Dir viel Erfolg an der JTS,
 Deine Admins
