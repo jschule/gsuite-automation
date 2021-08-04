@@ -8,6 +8,9 @@ Expects
 * `config.sh` with
   * `MASTERSHEET` is the G Sheet ID for master data
   * `MASTERUSER` is the G Domain User to access the master data sheet
+  * `STARTPASSWORD` is the start password used for employee accounts
+  * `NOTIFICATIONUSER` is the user who receives the email for new employees
+  * `STUDENT_PARENTS_GROUP_MANAGERS` is a list of users who will be managers for the student or parent groups
 
 ## Tricks
 

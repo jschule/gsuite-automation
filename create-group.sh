@@ -2,12 +2,11 @@
 #
 # $1 = Typ (parent or student)
 # $2 = Klasse, e.g. 34 or 910a
-# $3... = Schüler/Eltern/Lehrer emails
 
 
-if [ ! "$3" ] ; then
-    echo "Usage: $0 <student|parent> class email [email...]"
-    echo "Example: $0 parent 910a user@domain user2@domain2"
+if [ ! "$2" ] ; then
+    echo "Usage: $0 <student|parent> class"
+    echo "Example: $0 parent 910a"
     exit 99
 fi
 
@@ -20,6 +19,14 @@ if [ ! -x "$gam" ] ; then
     exit 98
 fi
 
+
+source config.sh
+
+test "$MASTERSHEET"
+test "$MASTERUSER"
+test "$STARTPASSWORD"
+test "$STUDENT_PARENTS_GROUP_MANAGERS"
+
 typ="$1"; shift
 class="$1" ; shift
 case "$typ" in
@@ -27,7 +34,7 @@ case "$typ" in
         group="verteiler-$class"
         name="$class-Verteiler JTS"
         subjectprefix="[Verteiler $class]"
-        managers=""
+        managers="$STUDENT_PARENTS_GROUP_MANAGERS"
         groupsettings=(
             whocandiscovergroup all_in_domain_can_discover
             whocanpostmessage all_in_domain_can_post
@@ -43,7 +50,7 @@ case "$typ" in
     (parent)
         group="eltern-$class"
         name="Eltern-Klasse-$class JTS"
-        managers="bettina.wolf"
+        managers="$STUDENT_PARENTS_GROUP_MANAGERS"
         subjectprefix="[Eltern $class]"
         groupsettings=(
             whocandiscovergroup all_in_domain_can_discover
@@ -65,7 +72,7 @@ case "$typ" in
 esac
 members="$*"
 
-csvfile=$(mktemp -t $(basename $0))
+csvfile=$(mktemp -t XXXXXXXXXXXXXX-$(basename $0))
 trap "rm -f $csvfile" 0
 function showerrorsfromcsv {
     echo "ERRORS: Please check and fix manually"
@@ -104,14 +111,8 @@ if test "$managers" ; then
     $gam redirect csv $csvfile \
         update group "$group" \
         add managers delivery nomail actioncsv \
-        "$managers" || showerrorsfromcsv
+        users "$managers" || showerrorsfromcsv
 fi
-
-# add members
-$gam redirect csv $csvfile \
-    update group "$group" \
-    add members actioncsv \
-    "$members" || showerrorsfromcsv
 
 $gam show group-members group "$group"
 $gam info group "$group" | grep -iE 'verteiler|eltern|whocanjoin|whocanview|whocanmoderate|allowext|primaryl'
@@ -121,5 +122,9 @@ if test "$need_manual_setup" ; then
     echo "Bitte in der Weboberfläche https://groups.google.com/a/jschule.de/g/$group/settings noch einstellen:"
     echo "* das Emailprefix auf '$subjectprefix' setzen"
     echo "* Conversation history einschalten"
+    echo "$extrahint"
+else 
+    echo "Bitte in der Weboberfläche https://groups.google.com/a/jschule.de/g/$group noch:"
+    echo "* alle Konversationen/Emails löschen"
     echo "$extrahint"
 fi
