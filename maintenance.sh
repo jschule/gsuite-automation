@@ -19,6 +19,8 @@ $gam ou_and_children Schüler print user | $gam user "$MASTERUSER" \
     update sheetrange "$MASTERSHEET" \
     json file <(make_gam_sheet_update_json Schüler)
 
+for x in $(seq 1 10) ; do echo -n ". "; sleep 1 ; done; echo
+
 info Sync Mitarbeiter / Lehrer group with OU
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Collections-of-Users#users-directly-in-the-organization-unit-orgunititem
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Groups-Membership#synchronize-members-in-a-group

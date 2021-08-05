@@ -24,4 +24,7 @@ $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Schüler neu" \
         firstname "~Vorname" \
         lastname "~Nachname"
 
+info Waiting a bit for Google to settle down
+for x in $(seq 1 10) ; do echo -n ". "; sleep 1 ; done; echo
+
 exec ./maintenance.sh
