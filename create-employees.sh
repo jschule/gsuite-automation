@@ -13,7 +13,7 @@ source config.sh
 test "$MASTERSHEET"
 test "$MASTERUSER"
 test "$STARTPASSWORD"
-test "$NOTIFICATIONUSER"
+test "$NOTIFICATIONUSERS"
 
 source _functions.sh
 
@@ -26,7 +26,7 @@ $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Mitarbeiter neu" \
         firstname "~Vorname" \
         lastname "~Nachname" \
         changepasswordatnextlogin true \
-        notify "$NOTIFICATIONUSER" \
+        notify "$NOTIFICATIONUSERS" \
         subject "Neues JTS Konto #givenname# #familyname#" \
         file new-employee-notification.txt
 
