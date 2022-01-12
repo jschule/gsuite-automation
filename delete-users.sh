@@ -12,7 +12,7 @@ source config.sh
 
 test "$MASTERSHEET"
 test "$MASTERUSER"
-test "DELETE_OU"
+test "$DELETE_OU"
 
 source _functions.sh
 
@@ -26,4 +26,4 @@ $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@
 
 info remember to manuall delete the users from $DELETE_OU
 
-exec ./maintenance.sh
+info Remove users from spreadsheet and run ./maintenance.sh
