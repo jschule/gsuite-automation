@@ -24,6 +24,6 @@ $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@
 # would be nice to remove the license here
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Licenses
 
-info remember to manuall delete the users from $DELETE_OU
+info remember to manually delete the users from $DELETE_OU
 
 info Remove users from spreadsheet and run ./maintenance.sh
