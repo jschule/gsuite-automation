@@ -6,6 +6,7 @@ source config.sh
 
 test "$MASTERSHEET"
 test "$MASTERUSER"
+test "$KITA"
 
 
 info Update Mitarbeiter and Schüler in Master Data
@@ -27,6 +28,7 @@ info Sync Mitarbeiter / Lehrer group with OU
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Collections-of-Users#users-directly-in-the-organization-unit-orgunititem
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Groups-Membership#synchronize-members-in-a-group
 $gam update group allelehrer sync usersonly notsuspended ou /Mitarbeiter/Lehrer
+$gam update group mitarbeiter@$KITA sync usersonly notsuspended ou /Mitarbeiter/Kita
 $gam update group mitarbeiter sync usersonly notsuspended ou /Mitarbeiter
 
 info Sync all student groups from master sheet data

@@ -30,6 +30,9 @@ $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Mitarbeiter neu" \
         subject "Neues JTS Konto #givenname# #familyname#" \
         file new-employee-notification.txt
 
+info Waiting a bit for Google to settle down
+for x in $(seq 1 10) ; do echo -n ". "; sleep 1 ; done; echo
+
 ./maintenance.sh
 
 cat <<EOF

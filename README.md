@@ -12,6 +12,7 @@ Expects
   * `DELETE_OU` is the OU where users to delete will be moved to
   * `NOTIFICATIONUSER` is the user who receives the email for new employees
   * `STUDENT_PARENTS_GROUP_MANAGERS` is a list of users who will be managers for the student or parent groups
+  * `KITA` is the domain of the Kita
 
 ## Tricks
 
