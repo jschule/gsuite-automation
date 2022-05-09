@@ -9,8 +9,8 @@ if [ ! -x "$gam" ] ; then
 fi
 
 if [ ! "$1" ] ; then
-    echo "Usage: $0 <class>"
-    echo "Example: $0 3"
+    echo "Usage: $0 <student>"
+    echo "Example: $0 test.schuelerin"
     exit 99
 fi
 
