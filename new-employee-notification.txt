@@ -2,7 +2,9 @@ Hallo #givenname# #familyname#,
 
 Du hast ein Konto bei der Jüdischen Traditionsschule erhalten.
 
-Bitte gehe auf https://neu.jschule.de/ und folde der Anleitung dort für die Ersteinrichtung.
+Bitte gehe auf https://neu.jschule.de/ und folge der Anleitung dort für die Ersteinrichtung.
+
+Du musst unbedingt als allererstes die 2-Faktor-Authentifizierung aktivieren, ansonsten wirst Du nach 1 Woche automatisch ausgesperrt!
 
 Deine Benutzerdaten sind:
 
