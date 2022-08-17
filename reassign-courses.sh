@@ -1,14 +1,18 @@
 #!/bin/bash
 
 source _functions.sh
-# not needed source config.sh
+source config.sh
 
 oldowner="${1:-}"
-newowner="${2:-}"
-shift 2 || die "Usage: $0 <old owner> <new owner>"
+newowner="${2:-$REASSIGN_COURSES_TO}"
+test "$oldowner" -a "$newowner" || die "Usage: $0 <old owner> [new owner, default: $REASSIGN_COURSES_TO]"
 
+$gam info user "$oldowner" quick fields fullname || die "Please specify valid old owner"
 
-info "Find courses owned by >$oldowner<"
+$gam info user "$newowner" quick fields fullname || die "Please specify valid new owner"
+
+info "Find courses owned by >$oldowner< and assigning to >$newowner<"
+
 courses="$($gam print courses owneremailmatchpattern "$oldowner")" || : ignore errors about non-existant users
 
 $gam loop - gam info course "~id" fields name,descriptionHeading,teachers <<<"$courses" || : ignore errors about non-existant users
@@ -23,9 +27,6 @@ if [ "$course_count" -gt 0 ] ; then
     echo -n "Courses: "
     echo "${course_ids[@]}" | tr " " ,
 
-    $gam info user "$newowner" quick fields fullname || die "Please specify valid new owner"
-
-    info "Assign $newowner as teacher/owner"
     $gam loop - gam update course "~id" teacher "$newowner" <<<"$courses"
 else
     info "No courses found"
