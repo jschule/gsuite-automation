@@ -23,6 +23,9 @@ $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Konten Ändern" matchfield Ol
     username "~Username" \
     email "~Email" \
     ou "~OU"
-    
+
+echo
+echo "Delaying for G Sheets to settle down"
+for x in $(seq 1 30) ; do echo -n ". "; sleep 1 ; done; echo
 
 exec ./maintenance.sh
