@@ -20,7 +20,7 @@ Expects
 * [Transfer Google Drive](https://github.com/taers232c/GAMADV-XTD3/wiki/Google-Data-Transfers) to other user:
 
   ```bash
-  gam create transfer OLD_USERNAME drive OLD_USERNAME all
+  gam create transfer OLD_USERNAME drive NEW_USERNAME all
   ```
 
 
