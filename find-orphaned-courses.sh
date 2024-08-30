@@ -7,8 +7,7 @@ source _functions.sh
 info Find courses without owner
 courses="$($gam print courses owneremailmatchpattern "Unknown user")" || : ignore errors about non-existant users
 
-$gam loop - gam info course "~id" fields name,descriptionHeading,teachers <<<"$courses" || : ignore errors about non-existant users
-
+$gam loop - gam info course "~id" fields name,descriptionHeading,teachers,coursestate <<<"$courses" || : ignore errors about non-existant users
 
 
 if [ "$(wc -l <<<"$courses")" -gt 1 ] ; then
