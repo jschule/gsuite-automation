@@ -1,4 +1,10 @@
 #!/bin/bash
+
+if [ ! "$1" ] ; then
+    echo "Usage: $0 <student|employee>"
+    exit 99
+fi
+
 set -o pipefail -o errexit -o nounset
 
 gam="$HOME/bin/gamadv-xtd3/gam"
@@ -16,8 +22,18 @@ test "$DELETE_OU"
 
 source _functions.sh
 
-info Moving user accounts for Deletion into $DELETE_OU OU
-$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@" \
+type="$1" ;  shift
+case "$type" in
+    (student|employee)
+        info Moving user accounts for $type deletion into $DELETE_OU OU
+        ;;
+    (*)
+        echo '$type must be student or employee'
+        exit 98
+        ;;
+esac
+
+$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@" matchfield Type "$type" \
 	gam update user "~Email" \
     ou "$DELETE_OU"
 
