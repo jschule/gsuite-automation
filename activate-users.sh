@@ -25,11 +25,11 @@ source _functions.sh
 type="$1" ;  shift
 case "$type" in
     (student)
-        echo Deactivating students is not yet implemented because we would also have to temoporarily remove the parents from the parents mailing list
+        echo Activating students is not yet implemented because we would also have to temoporarily remove the parents from the parents mailing list
         exit 97
         ;;
     (employee)
-        info Deactivating employee accounts
+        info Activating employee accounts
         ;;
     (*)
         echo '$type must be student or employee'
@@ -37,7 +37,6 @@ case "$type" in
         ;;
 esac
 
-$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Deaktivieren" matchfield Email "@" matchfield Type "$type" \
-	gam suspend user "~Email"
-
-info To re-activate a user please update the master sheet and run activate-users.sh
+$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Aktivieren" matchfield Email "@" matchfield Type "$type" \
+	gam unsuspend user "~Email"
+    
