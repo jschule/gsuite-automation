@@ -12,11 +12,16 @@ test "$KITA"
 info Update Mitarbeiter and Schüler in Master Data
 $gam user $MASTERUSER clear sheetranges "$MASTERSHEET" range Schüler range Mitarbeiter
 
-$gam ou_and_children Mitarbeiter print user | $gam user "$MASTERUSER" \
+userlist="$($gam print user fields ou)"
+# output is list of
+# user@domain,/OU/Sub-OU
+# the old ou_and_children method was sometimes not showing recently created accounts, unclear why.
+# this is a workaround and performance improvement
+grep ,/Mitarbeiter <<<"$userlist" | cut -d , -f 1 | $gam user "$MASTERUSER" \
     update sheetrange "$MASTERSHEET" \
     json file <(make_gam_sheet_update_json Mitarbeiter)
 
-$gam ou_and_children Schüler print user | $gam user "$MASTERUSER" \
+grep ,/Schüler <<<"$userlist" | cut -d , -f 1 | $gam user "$MASTERUSER" \
     update sheetrange "$MASTERSHEET" \
     json file <(make_gam_sheet_update_json Schüler)
 
