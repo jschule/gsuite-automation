@@ -39,6 +39,15 @@ function die {
     exit 2
 }
 
+function make_temp_file {
+    local suffix="${1:-}"
+    local f
+    local base
+    base=$(basename "$0")
+    f=$(mktemp -t "${base%.*}-${suffix}XXXXXXXXXXXXXX")
+    echo "$f"
+}
+
 if [ ! -x "$gam" ] ; then
     die "Need https://github.com/taers232c/GAMADV-XTD3 in $gam, please install"
 fi
