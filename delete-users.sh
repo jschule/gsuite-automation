@@ -24,8 +24,18 @@ source _functions.sh
 
 type="$1" ;  shift
 case "$type" in
-    (student|employee)
-        info Moving user accounts for $type deletion into $DELETE_OU OU
+    (employee)
+        info Moving employee accounts for deletion into $DELETE_OU OU
+        $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@" matchfield Type "$type" \
+	        gam update user "~Email" \
+            ou "$DELETE_OU"
+
+        info remember to manually delete the users from $DELETE_OU
+        ;;
+    (student)
+        info Deleting students accounts for $type deletion into $DELETE_OU OU
+        $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@" matchfield Type "$type" \
+	        gam delete user "~Email"
         ;;
     (*)
         echo '$type must be student or employee'
@@ -33,13 +43,10 @@ case "$type" in
         ;;
 esac
 
-$gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@" matchfield Type "$type" \
-	gam update user "~Email" \
-    ou "$DELETE_OU"
+
 
 # would be nice to remove the license here
 # https://github.com/taers232c/GAMADV-XTD3/wiki/Licenses
 
-info remember to manually delete the users from $DELETE_OU
 
 info Remove users from spreadsheet and run ./maintenance.sh
