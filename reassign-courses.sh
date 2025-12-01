@@ -4,8 +4,8 @@ source _functions.sh
 source config.sh
 
 oldowner="${1:-}"
-newowner="${2:-$REASSIGN_COURSES_TO}"
-test "$oldowner" -a "$newowner" || die "Usage: $0 <old owner> [new owner, default: $REASSIGN_COURSES_TO]"
+newowner="${2:-$DATA_TRANSFER_RECIPIENT}"
+test "$oldowner" -a "$newowner" || die "Usage: $0 <old owner> [new owner, default: $DATA_TRANSFER_RECIPIENT]"
 
 $gam info user "$oldowner" quick fields fullname || die "Please specify valid old owner"
 

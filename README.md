@@ -12,7 +12,7 @@ Expects
   * `DELETE_OU` is the OU where users to delete will be moved to
   * `NOTIFICATIONUSER` is the user who receives the email for new employees
   * `STUDENT_PARENTS_GROUP_MANAGERS` is a list of users who will be managers for the student or parent groups
-  * `REASSIGN_COURSES_TO` is the default new owner for course reassignments
+  * `DATA_TRANSFER_RECIPIENT` is the default new owner for course reassignments or data transfers (deleting employees)
   * `KITA` is the domain of the Kita
 
 ## Tricks

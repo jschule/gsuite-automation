@@ -19,6 +19,7 @@ source config.sh
 test "$MASTERSHEET"
 test "$MASTERUSER"
 test "$DELETE_OU"
+test "$DATA_TRANSFER_RECIPIENT"
 
 source _functions.sh
 
@@ -30,10 +31,19 @@ case "$type" in
 	        gam update user "~Email" \
             ou "$DELETE_OU"
 
-        info remember to manually delete the users from $DELETE_OU
+# TODO: Reassign Courses, too !!!
+
+        info Transferring all Drive data to $DATA_TRANSFER_RECIPIENT
+        $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@" matchfield Type "$type" \
+	        gam create transfer "~Email" \
+            drive "$DATA_TRANSFER_RECIPIENT" all wait 10 60
+
+        info Deleting employee accounts after data transfer
+        $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@" matchfield Type "$type" \
+	        gam delete user "~Email"
         ;;
     (student)
-        info Deleting students accounts for $type deletion into $DELETE_OU OU
+        info Deleting students accounts
         $gam loop gsheet "$MASTERUSER" "$MASTERSHEET" "gam Löschen" matchfield Email "@" matchfield Type "$type" \
 	        gam delete user "~Email"
         ;;
@@ -42,11 +52,5 @@ case "$type" in
         exit 98
         ;;
 esac
-
-
-
-# would be nice to remove the license here
-# https://github.com/taers232c/GAMADV-XTD3/wiki/Licenses
-
 
 info Remove users from spreadsheet and run ./maintenance.sh
