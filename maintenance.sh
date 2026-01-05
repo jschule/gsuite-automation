@@ -26,6 +26,10 @@ grep ,/Schüler <<<"$userlist" | cut -d , -f 1 | $gam user "$MASTERUSER" \
     json file <(make_gam_sheet_update_json Schüler)
 
 echo
+info Accounts in other OUs
+grep -E -v ',/(Schüler|Mitarbeiter)' <<<"$userlist"
+
+echo
 echo "Delaying for G Sheets to settle down"
 for x in $(seq 1 10) ; do echo -n ". "; sleep 1 ; done; echo
 
