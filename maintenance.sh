@@ -27,7 +27,7 @@ grep ,/Schüler <<<"$userlist" | cut -d , -f 1 | $gam user "$MASTERUSER" \
 
 echo
 info Accounts in other OUs
-grep -E -v ',/(Schüler|Mitarbeiter)' <<<"$userlist"
+grep -E -v ',/(Schüler|Mitarbeiter)' <<<"$userlist" | column -t -s ,
 
 echo
 echo "Delaying for G Sheets to settle down"
